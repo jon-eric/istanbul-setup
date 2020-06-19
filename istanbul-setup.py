@@ -51,8 +51,10 @@ def shuffled(places):
             return places
 
 def legallayout(places):
-    fountain = places.index((7, 'Fountain'))
-    return fountain > 3 and fountain <= 12 and (fountain % 4 > 0) and (fountain % 4 < 3)
+    count = len(places)
+    width = math.isqrt(count)
+    fountain = divmod(places.index((7, 'Fountain')), width)
+    return 0 < fountain[0] < 3 and 0 < fountain[1] < 3
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
