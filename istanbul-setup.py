@@ -47,7 +47,12 @@ def shuffled(places):
     places = list(places)
     while True:
         random.shuffle(places)
-        return places
+        if legallayout(places):
+            return places
+
+def legallayout(places):
+    fountain = places.index((7, 'Fountain'))
+    return fountain > 3 and fountain <= 12 and (fountain % 4 > 0) and (fountain % 4 < 3)
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
