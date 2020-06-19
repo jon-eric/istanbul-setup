@@ -53,8 +53,16 @@ def shuffled(places):
 def legallayout(places):
     count = len(places)
     width = math.isqrt(count)
+    height = -(count // -width)
+    col_max = width - 1
+    row_max = height - 1
+
+    # The Fountain (7) has to be one of the inner Places.
     fountain = divmod(places.index((7, 'Fountain')), width)
-    return 0 < fountain[0] < 3 and 0 < fountain[1] < 3
+    if not (0 < fountain[0] < row_max and 0 < fountain[1] < col_max):
+       return False
+
+    return True
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
