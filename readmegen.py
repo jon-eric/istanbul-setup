@@ -38,7 +38,6 @@ def examplelines(args):
 
     # Example output.
     places = module.shuffled(module.base_places)
-    yield ''
     yield from module.genboard(places)
 
 def mdheader(name):
