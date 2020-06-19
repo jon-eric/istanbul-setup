@@ -28,19 +28,20 @@ def main(args):
     random.shuffle(places)
 
     # Print board.
-    print_board(base_places)
+    for line in genboard(places):
+        print(line)
 
-def print_board(places):
-    """Print an iterable of (idx, name) places.
+def genboard(places):
+    """Generate board lines from a list of (idx, name) places.
     """
     count = len(places)
     width = math.isqrt(count)
     idx_width = max(len(str(idx)) for idx, name in places)
     name_width = max(len(name) for idx, name in places)
     items = [f'{idx:{idx_width}}) {name:^{name_width}}' for idx, name in places]
-    print()
+    yield ''
     for row in grouper(items, width):
-        print(' | '.join(row))
+        yield ' | '.join(row)
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
