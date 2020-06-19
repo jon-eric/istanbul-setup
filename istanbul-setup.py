@@ -25,7 +25,7 @@ base_places = list(enumerate([
 def main(args):
     # Shuffle places.
     places = list(base_places)
-    random.shuffle(places)
+    shuffled(places)
 
     # Print board.
     for line in genboard(places):
@@ -42,6 +42,12 @@ def genboard(places):
     yield ''
     for row in grouper(items, width):
         yield ' | '.join(row)
+
+def shuffled(places):
+    places = list(places)
+    while True:
+        random.shuffle(places)
+        return places
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.

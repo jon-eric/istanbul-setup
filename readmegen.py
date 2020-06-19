@@ -32,15 +32,12 @@ def exampleslines(examples):
         yield from mdcode(examplelines(args))
 
 def examplelines(args):
-    # Shuffle places.
-    places = list(module.base_places)
-    random.shuffle(places)
-
     # Example input.
     yield ''
     yield ' '.join(['$ istanbul-setup.py'] + args)
 
     # Example output.
+    places = module.shuffled(module.base_places)
     yield ''
     yield from module.genboard(places)
 
