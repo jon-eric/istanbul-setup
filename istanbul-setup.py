@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
 """Generate Istanbul board game setups.
 """
+import math
+
+tiles = list(range(16))
 
 def main(args):
-    for row in grouper(range(16), 4):
+    print_board(tiles)
+
+def print_board(tiles):
+    """Print an iterable of tile indexes.
+    """
+    print()
+    count = len(tiles)
+    width = math.isqrt(count)
+    for row in grouper(tiles, width):
         print(' | '.join(str(idx) for idx in row))
 
 def grouper(iterable, n):
