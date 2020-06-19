@@ -24,8 +24,7 @@ base_places = list(enumerate([
 
 def main(args):
     # Shuffle places.
-    places = list(base_places)
-    shuffled(places)
+    places = shuffled(base_places)
 
     # Print board.
     for line in genboard(places):
