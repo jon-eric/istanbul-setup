@@ -8,7 +8,15 @@ tiles = list(range(16))
 base_places = ['Wainwright',
                'Fabric Warehouse',
                'Spice Warehouse',
-               'Fruit Warehouse']
+               'Fruit Warehouse',
+               'Post Office',
+               'Caravansary',
+               'Fountain',
+               'Black Market',
+               'Tea House',
+               'Large Market',
+               'Small Market',
+               'Police Station']
 
 def main(args):
     print_board(base_places)
@@ -18,8 +26,9 @@ def print_board(names):
     """
     count = len(names)
     width = math.isqrt(count)
+    idx_width = len(str(count))
     name_width = max(len(name) for name in names)
-    items = [f'{idx+1}. {name:{name_width}}' for idx, name in enumerate(names)]
+    items = [f'{idx+1:{idx_width}}) {name:^{name_width}}' for idx, name in enumerate(names)]
     print()
     for row in grouper(items, width):
         print(' | '.join(row))
