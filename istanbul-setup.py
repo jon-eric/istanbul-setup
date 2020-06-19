@@ -2,33 +2,42 @@
 """Generate Istanbul board game setups.
 """
 import math
+import random
 
-tiles = list(range(16))
-
-base_places = ['Wainwright',
-               'Fabric Warehouse',
-               'Spice Warehouse',
-               'Fruit Warehouse',
-               'Post Office',
-               'Caravansary',
-               'Fountain',
-               'Black Market',
-               'Tea House',
-               'Large Market',
-               'Small Market',
-               'Police Station']
+base_places = list(enumerate([
+    'Wainwright',
+    'Fabric Warehouse',
+    'Spice Warehouse',
+    'Fruit Warehouse',
+    'Post Office',
+    'Caravansary',
+    'Fountain',
+    'Black Market',
+    'Tea House',
+    'Large Market',
+    'Small Market',
+    'Police Station',
+    'Sultan’s Palace',
+    'Small Mosque',
+    'Great Mosque',
+    'Gemstone Dealer'], 1))
 
 def main(args):
+    # Shuffle places.
+    places = base_places
+    random.shuffle(places)
+
+    # Print board.
     print_board(base_places)
 
-def print_board(names):
-    """Print an iterable of tile names.
+def print_board(places):
+    """Print an iterable of (idx, name) places.
     """
-    count = len(names)
+    count = len(places)
     width = math.isqrt(count)
-    idx_width = len(str(count))
-    name_width = max(len(name) for name in names)
-    items = [f'{idx+1:{idx_width}}) {name:^{name_width}}' for idx, name in enumerate(names)]
+    idx_width = max(len(str(idx)) for idx, name in places)
+    name_width = max(len(name) for idx, name in places)
+    items = [f'{idx:{idx_width}}) {name:^{name_width}}' for idx, name in places]
     print()
     for row in grouper(items, width):
         print(' | '.join(row))
