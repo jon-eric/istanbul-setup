@@ -12,10 +12,12 @@ def print_board(tiles):
     """Print an iterable of tile indexes.
     """
     print()
-    count = len(tiles)
+    items = [f'{idx+1}.' for idx in tiles]
+    count = len(items)
     width = math.isqrt(count)
-    for row in grouper(tiles, width):
-        print(' | '.join(str(idx) for idx in row))
+    item_width = max(len(item) for item in items)
+    for row in grouper(items, width):
+        print(' | '.join(f'{item:{item_width}}' for item in row))
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
