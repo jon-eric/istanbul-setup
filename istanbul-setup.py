@@ -5,19 +5,24 @@ import math
 
 tiles = list(range(16))
 
-def main(args):
-    print_board(tiles)
+base_places = ['Wainwright',
+               'Fabric Warehouse',
+               'Spice Warehouse',
+               'Fruit Warehouse']
 
-def print_board(tiles):
-    """Print an iterable of tile indexes.
+def main(args):
+    print_board(base_places)
+
+def print_board(names):
+    """Print an iterable of tile names.
     """
-    print()
-    items = [f'{idx+1}.' for idx in tiles]
-    count = len(items)
+    count = len(names)
     width = math.isqrt(count)
-    item_width = max(len(item) for item in items)
+    name_width = max(len(name) for name in names)
+    items = [f'{idx+1}. {name:{name_width}}' for idx, name in enumerate(names)]
+    print()
     for row in grouper(items, width):
-        print(' | '.join(f'{item:{item_width}}' for item in row))
+        print(' | '.join(row))
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
