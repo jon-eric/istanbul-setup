@@ -5,22 +5,22 @@ import math
 import random
 
 base_places = list(enumerate([
-    'Wainwright',
-    'Fabric Warehouse',
-    'Spice Warehouse',
-    'Fruit Warehouse',
-    'Post Office',
-    'Caravansary',
-    'Fountain',
-    'Black Market',
-    'Tea House',
-    'Large Market',
-    'Small Market',
-    'Police Station',
-    'Sultan’s Palace',
-    'Small Mosque',
-    'Great Mosque',
-    'Gemstone Dealer'], 1))
+    "Wainwright",
+    "Fabric Warehouse",
+    "Spice Warehouse",
+    "Fruit Warehouse",
+    "Post Office",
+    "Caravansary",
+    "Fountain",
+    "Black Market",
+    "Tea House",
+    "Large Market",
+    "Small Market",
+    "Police Station",
+    "Sultan's Palace",
+    "Small Mosque",
+    "Great Mosque",
+    "Gemstone Dealer"], 1))
 
 def main(args):
     # Shuffle places.
