@@ -40,9 +40,10 @@ class Board:
     def islegal(self):
         """Return True if the board layout is legal.
         """
-        # The Fountain (7) has to be one of the inner Places.
+        # The Fountain (7) has to be one of the innermost Places.
         fountain = self.find(7)
-        if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[1]):
+        if fountain[0] not in (self.height // 2, self.max[0] // 2) or\
+           fountain[1] not in (self.width  // 2, self.max[1] // 2):
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
