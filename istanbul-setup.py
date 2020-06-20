@@ -65,9 +65,9 @@ class Board:
         """Layout the board.
         """
         count = len(self.places)
-        height = math.isqrt(count)
-        self.width = count // height
-        self.max = height - 1, self.width - 1
+        self.height = math.isqrt(count)
+        self.width = count // self.height
+        self.max = self.height - 1, self.width - 1
         while shuffle:
             random.shuffle(self.places)
             if not legalonly or self.islegal():
