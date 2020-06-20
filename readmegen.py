@@ -37,7 +37,7 @@ def examplelines(args):
     yield ' '.join(['$ istanbul-setup.py'] + args)
 
     # Example output.
-    yield from module.Board().shuffle().render()
+    yield from module.Board().render()
 
 def mdheader(name):
     return name + '\n' + '-' * len(name)

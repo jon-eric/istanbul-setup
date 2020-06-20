@@ -23,12 +23,9 @@ class Board:
         "Great Mosque",
         "Gemstone Dealer"], 1))
 
-    def __init__(self, places=base_places):
+    def __init__(self, places=base_places, shuffle=True):
         self.places = list(places)
-        count = len(self.places)
-        self.width = math.isqrt(count)
-        self.height = -(count // -self.width)
-        self.max = self.height - 1, self.width - 1
+        self.layout(shuffle)
 
     def islegal(self):
         # The Fountain (7) has to be one of the inner Places.
@@ -50,6 +47,16 @@ class Board:
     def find(self, place):
         return divmod(self.places.index(place), self.width)
 
+    def layout(self, shuffle=True):
+        count = len(self.places)
+        self.width = math.isqrt(count)
+        self.height = -(count // -self.width)
+        self.max = self.height - 1, self.width - 1
+        while shuffle:
+            random.shuffle(self.places)
+            if self.islegal():
+                return self
+
     def render(self):
         id_width = max(len(f'{id}') for id in self.places)
         names = [self.base_places[id] for id in self.places]
@@ -59,16 +66,9 @@ class Board:
         for row in grouper(items, self.width):
             yield ' | '.join(row)
 
-    def shuffle(self):
-        while True:
-            random.shuffle(self.places)
-            if self.islegal():
-                return self
-
 def main(args):
     # Shuffle places.
     board = Board()
-    board.shuffle()
 
     # Print board.
     for line in board.render():
