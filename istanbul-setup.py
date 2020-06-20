@@ -41,7 +41,7 @@ class Board:
         """Return True if the board layout is legal.
         """
         # The Fountain (7) has to be one of the innermost Places.
-        if self.find(7) not in self.innermost:
+        if self.find(7) not in self.inner:
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
@@ -67,10 +67,7 @@ class Board:
         self.height = math.isqrt(count)
         self.width = count // self.height
         self.max = self.height - 1, self.width - 1
-        self.innermost = {(x // 2, y // 2) for x, y in [(self.max[0], self.max[1]),
-                                                        (self.max[0], self.width ),
-                                                        (self.height, self.max[1]),
-                                                        (self.height, self.width )]}
+        self.inner = self._inner()
         while shuffle:
             random.shuffle(self.places)
             if not legalonly or self.islegal():
@@ -84,6 +81,14 @@ class Board:
         name_width = max(len(name) for name in names)
         items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
         yield from rendertable(grouper(items, self.width))
+
+    def _inner(self):
+        """Return an iterable of (row, col) legal "inner" Fountain spaces.
+        """
+        return {(x // 2, y // 2) for x, y in [(self.max[0], self.max[1]),
+                                              (self.max[0], self.width ),
+                                              (self.height, self.max[1]),
+                                              (self.height, self.width )]}
 
 def rendertable(table):
     """Render a 2D table as an iterable of lines.
