@@ -35,20 +35,23 @@ class Board:
 
     def islegal(self):
         # The Fountain (7) has to be one of the inner Places.
-        fountain = divmod(self.places.index(self.fountain), self.width)
+        fountain = self.find(self.fountain)
         if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[0]):
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
         # 3 Places from each other and must not be placed in the same column or row.
-        black_market = divmod(self.places.index(self.black_market), self.width)
-        tea_house = divmod(self.places.index(self.tea_house), self.width)
+        black_market = self.find(self.black_market)
+        tea_house = self.find(self.tea_house)
         col_diff = abs(tea_house[1] - black_market[1])
         row_diff = abs(tea_house[0] - black_market[0])
         if col_diff + row_diff < 3 or col_diff < 1 or row_diff < 1:
             return False
 
         return True
+
+    def find(self, place):
+        return divmod(self.places.index(place), self.width)
 
     def render(self):
         idx_width = max(len(str(idx)) for idx, name in self.places)
