@@ -83,9 +83,17 @@ class Board:
         names = [self.names[id] for id in self.places]
         name_width = max(len(name) for name in names)
         items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
-        yield ''
-        for row in grouper(items, self.width):
-            yield ' | '.join(row)
+        yield from rendertable(grouper(items, self.width))
+
+def rendertable(table):
+    """Render a 2D table as an iterable of lines.
+    """
+    for i, row in enumerate(table):
+        if i == 0:
+            yield ''
+            yield '|-' + '-+-'.join('-' * len(item) for item in row) + '-|'
+        yield '| ' + ' | '.join(row) + ' |'
+        yield '|-' + '-+-'.join('-' * len(item) for item in row) + '-|'
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
