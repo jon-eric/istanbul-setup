@@ -41,9 +41,7 @@ class Board:
         """Return True if the board layout is legal.
         """
         # The Fountain (7) has to be one of the innermost Places.
-        fountain = self.find(7)
-        if fountain[0] not in (self.height // 2, self.max[0] // 2) or\
-           fountain[1] not in (self.width  // 2, self.max[1] // 2):
+        if self.find(7) not in self.innermost:
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
@@ -69,6 +67,10 @@ class Board:
         self.height = math.isqrt(count)
         self.width = count // self.height
         self.max = self.height - 1, self.width - 1
+        self.innermost = {(x // 2, y // 2) for x, y in [(self.max[0], self.max[1]),
+                                                        (self.max[0], self.width ),
+                                                        (self.height, self.max[1]),
+                                                        (self.height, self.width )]}
         while shuffle:
             random.shuffle(self.places)
             if not legalonly or self.islegal():
