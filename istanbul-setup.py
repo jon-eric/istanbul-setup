@@ -28,6 +28,8 @@ class Board:
         self.layout(shuffle)
 
     def islegal(self):
+        """Return True if the board layout is legal.
+        """
         # The Fountain (7) has to be one of the inner Places.
         fountain = self.find(7)
         if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[0]):
@@ -47,17 +49,21 @@ class Board:
     def find(self, place):
         return divmod(self.places.index(place), self.width)
 
-    def layout(self, shuffle=True):
+    def layout(self, shuffle=True, legalonly=True):
+        """Layout the board.
+        """
         count = len(self.places)
         self.width = math.isqrt(count)
         self.height = -(count // -self.width)
         self.max = self.height - 1, self.width - 1
         while shuffle:
             random.shuffle(self.places)
-            if self.islegal():
+            if not legalonly or self.islegal():
                 return self
 
     def render(self):
+        """Render the board.
+        """
         id_width = max(len(f'{id}') for id in self.places)
         names = [self.base_places[id] for id in self.places]
         name_width = max(len(name) for name in names)
@@ -66,20 +72,20 @@ class Board:
         for row in grouper(items, self.width):
             yield ' | '.join(row)
 
-def main(args):
-    # Shuffle places.
-    board = Board()
-
-    # Print board.
-    for line in board.render():
-        print(line)
-
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
     """
     # grouper('ABCDEFG', 3) --> ABC DEF"
     args = [iter(iterable)] * n
     return zip(*args)
+
+def main(args):
+    # Layout the board.
+    board = Board()
+
+    # Print board.
+    for line in board.render():
+        print(line)
 
 if __name__ == '__main__':
     import sys
