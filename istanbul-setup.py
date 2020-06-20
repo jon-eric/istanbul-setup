@@ -29,12 +29,25 @@ class Board:
         "Tavern",
         "Coffee House"], 17))
 
-    names = {**base_places, **mocha_places}
+    letters_places = dict(enumerate([
+        "Embassy",
+        "Kiosk",
+        "Auction House",
+        "Secret Society"], 21))
 
-    def __init__(self, mocha=False, shuffle=True):
+    bazaar_places = dict(enumerate([
+        "Catacombs"], 25))
+
+    names = {**base_places, **mocha_places, **letters_places, **bazaar_places}
+
+    def __init__(self, mocha=False, letters=False, shuffle=True):
         self.places = list(self.base_places)
         if mocha:
             self.places.extend(self.mocha_places)
+        if letters:
+            self.places.extend(self.letters_places)
+        if mocha and letters:
+            self.places.extend(self.bazaar_places)
         self.layout(shuffle)
 
     def islegal(self):
