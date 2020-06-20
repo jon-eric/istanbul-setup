@@ -7,7 +7,7 @@
             "label": "pytest",
             "type": "shell",
             "command": "python",
-            "args": ["-m", "pytest", "istanbul-setup.py"],
+            "args": ["-m", "pytest"],
             "problemMatcher": [],
             "group": {
                 "kind": "build",
