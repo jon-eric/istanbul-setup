@@ -5,7 +5,7 @@ import math
 import random
 
 class Board:
-    base_places = list(enumerate([
+    base_places = dict(enumerate([
         "Wainwright",
         "Fabric Warehouse",
         "Spice Warehouse",
@@ -22,9 +22,6 @@ class Board:
         "Small Mosque",
         "Great Mosque",
         "Gemstone Dealer"], 1))
-    fountain = base_places[6]
-    tea_house = base_places[8]
-    black_market = base_places[9]
 
     def __init__(self, places=base_places):
         self.places = list(places)
@@ -35,14 +32,14 @@ class Board:
 
     def islegal(self):
         # The Fountain (7) has to be one of the inner Places.
-        fountain = self.find(self.fountain)
+        fountain = self.find(7)
         if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[0]):
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
         # 3 Places from each other and must not be placed in the same column or row.
-        black_market = self.find(self.black_market)
-        tea_house = self.find(self.tea_house)
+        black_market = self.find(8)
+        tea_house = self.find(9)
         col_diff = abs(tea_house[1] - black_market[1])
         row_diff = abs(tea_house[0] - black_market[0])
         if col_diff + row_diff < 3 or col_diff < 1 or row_diff < 1:
@@ -54,9 +51,10 @@ class Board:
         return divmod(self.places.index(place), self.width)
 
     def render(self):
-        idx_width = max(len(str(idx)) for idx, name in self.places)
-        name_width = max(len(name) for idx, name in self.places)
-        items = [f'{idx:{idx_width}}) {name:^{name_width}}' for idx, name in self.places]
+        id_width = max(len(f'{id}') for id in self.places)
+        names = [self.base_places[id] for id in self.places]
+        name_width = max(len(name) for name in names)
+        items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
         yield ''
         for row in grouper(items, self.width):
             yield ' | '.join(row)
