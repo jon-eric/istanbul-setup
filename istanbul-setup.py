@@ -42,7 +42,7 @@ class Board:
         """
         # The Fountain (7) has to be one of the inner Places.
         fountain = self.find(7)
-        if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[0]):
+        if not (0 < fountain[0] < self.max[0] and 0 < fountain[1] < self.max[1]):
             return False
 
         # The Black Market (8) and the Tea House (9) must have a distance of at least
@@ -57,6 +57,8 @@ class Board:
         return True
 
     def find(self, place):
+        """Return (row, column) of place.
+        """
         return divmod(self.places.index(place), self.width)
 
     def layout(self, shuffle=True, legalonly=True):
