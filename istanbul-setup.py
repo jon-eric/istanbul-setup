@@ -23,8 +23,18 @@ class Board:
         "Great Mosque",
         "Gemstone Dealer"], 1))
 
-    def __init__(self, shuffle=True):
+    mocha_places = dict(enumerate([
+        "Roasting Plant",
+        "Guild Hall",
+        "Tavern",
+        "Coffee House"], 17))
+
+    names = {**base_places, **mocha_places}
+
+    def __init__(self, mocha=False, shuffle=True):
         self.places = list(self.base_places)
+        if mocha:
+            self.places.extend(self.mocha_places)
         self.layout(shuffle)
 
     def islegal(self):
@@ -65,7 +75,7 @@ class Board:
         """Render the board.
         """
         id_width = max(len(f'{id}') for id in self.places)
-        names = [self.base_places[id] for id in self.places]
+        names = [self.names[id] for id in self.places]
         name_width = max(len(name) for name in names)
         items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
         yield ''
