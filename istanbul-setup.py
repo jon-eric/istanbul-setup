@@ -23,8 +23,8 @@ class Board:
         "Great Mosque",
         "Gemstone Dealer"], 1))
 
-    def __init__(self, places=base_places, shuffle=True):
-        self.places = list(places)
+    def __init__(self, shuffle=True):
+        self.places = list(self.base_places)
         self.layout(shuffle)
 
     def islegal(self):
