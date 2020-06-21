@@ -105,11 +105,9 @@ class Board:
     def _inner(height, width):
         """Return a set of (row, col) legal "inner" Fountain spaces.
         """
-        max = height - 1, width - 1
-        return {(x // 2, y // 2) for x, y in [(max[0], max[1]),
-                                              (max[0], width ),
-                                              (height, max[1]),
-                                              (height, width )]}
+        border = min((height - 1) // 2, (width - 1) // 2)
+        return {(row, col) for row in range(border, height - border)
+                           for col in range(border, width  - border)}
 
     def render(self):
         """Render the board.

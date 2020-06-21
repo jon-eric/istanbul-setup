@@ -16,37 +16,37 @@ Examples
     $ istanbul-setup.py --mocha
 
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 17)  Roasting Plant  |  9)    Tea House     | 18)    Guild Hall    | 20)   Coffee House   |  5)   Post Office    |
+    |  3) Spice Warehouse  | 20)   Coffee House   |  9)    Tea House     | 17)  Roasting Plant  | 19)      Tavern      |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 16) Gemstone Dealer  |  3) Spice Warehouse  | 14)   Small Mosque   | 12)  Police Station  | 19)      Tavern      |
+    | 14)   Small Mosque   | 10)   Large Market   |  5)   Post Office    |  4) Fruit Warehouse  | 15)   Great Mosque   |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 15)   Great Mosque   |  4) Fruit Warehouse  |  7)     Fountain     | 11)   Small Market   |  8)   Black Market   |
+    | 13) Sultan's Palace  |  7)     Fountain     | 12)  Police Station  | 16) Gemstone Dealer  |  8)   Black Market   |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    |  1)    Wainwright    | 13) Sultan's Palace  |  2) Fabric Warehouse |  6)   Caravansary    | 10)   Large Market   |
+    | 18)    Guild Hall    |  6)   Caravansary    |  1)    Wainwright    | 11)   Small Market   |  2) Fabric Warehouse |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
 
     $ istanbul-setup.py --letters
 
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    |  3) Spice Warehouse  | 22)      Kiosk       |  1)    Wainwright    |  9)    Tea House     |  6)   Caravansary    |
+    | 14)   Small Mosque   |  1)    Wainwright    | 16) Gemstone Dealer  |  9)    Tea House     |  4) Fruit Warehouse  |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    |  8)   Black Market   | 23)  Auction House   |  7)     Fountain     | 15)   Great Mosque   | 10)   Large Market   |
+    | 10)   Large Market   |  8)   Black Market   |  6)   Caravansary    |  7)     Fountain     |  2) Fabric Warehouse |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 21)     Embassy      |  5)   Post Office    | 11)   Small Market   | 14)   Small Mosque   | 16) Gemstone Dealer  |
+    | 22)      Kiosk       | 12)  Police Station  | 21)     Embassy      |  5)   Post Office    | 24)  Secret Society  |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 13) Sultan's Palace  | 24)  Secret Society  |  2) Fabric Warehouse |  4) Fruit Warehouse  | 12)  Police Station  |
+    |  3) Spice Warehouse  | 13) Sultan's Palace  | 15)   Great Mosque   | 11)   Small Market   | 23)  Auction House   |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
 
     $ istanbul-setup.py --mocha --letters
 
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 18)    Guild Hall    |  1)    Wainwright    |  6)   Caravansary    | 23)  Auction House   | 13) Sultan's Palace  |
+    |  1)    Wainwright    | 16) Gemstone Dealer  | 18)    Guild Hall    |  8)   Black Market   | 20)   Coffee House   |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 15)   Great Mosque   | 21)     Embassy      | 17)  Roasting Plant  | 20)   Coffee House   |  3) Spice Warehouse  |
+    | 19)      Tavern      | 10)   Large Market   |  3) Spice Warehouse  |  4) Fruit Warehouse  | 24)  Secret Society  |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 19)      Tavern      |  8)   Black Market   |  7)     Fountain     | 22)      Kiosk       | 11)   Small Market   |
+    |  6)   Caravansary    | 13) Sultan's Palace  |  7)     Fountain     | 12)  Police Station  | 17)  Roasting Plant  |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    | 12)  Police Station  |  4) Fruit Warehouse  |  5)   Post Office    | 25)    Catacombs     |  2) Fabric Warehouse |
+    |  9)    Tea House     | 14)   Small Mosque   | 25)    Catacombs     | 21)     Embassy      |  2) Fabric Warehouse |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
-    |  9)    Tea House     | 10)   Large Market   | 24)  Secret Society  | 14)   Small Mosque   | 16) Gemstone Dealer  |
+    | 22)      Kiosk       |  5)   Post Office    | 23)  Auction House   | 15)   Great Mosque   | 11)   Small Market   |
     |----------------------+----------------------+----------------------+----------------------+----------------------|
