@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Generate Examples in README.
 """
-import fileinput
+import io
 import random
 import re
-module = __import__('istanbul-setup')
+from contextlib import redirect_stdout
+istanbul_setup = __import__('istanbul-setup')
 
 path = 'README.md'
 
@@ -37,7 +38,11 @@ def examplelines(args):
     yield ' '.join(['$ istanbul-setup.py'] + args)
 
     # Example output.
-    yield from module.Board().render()
+    with io.StringIO() as f:
+        with redirect_stdout(f):
+            istanbul_setup.main(args)
+        f.seek(0)
+        yield from f
 
 def mdheader(name):
     return name + '\n' + '-' * len(name)
