@@ -79,8 +79,7 @@ class Board:
         count = len(self.places)
         self.height = math.isqrt(count)
         self.width = count // self.height
-        self.max = self.height - 1, self.width - 1
-        self.inner = self._inner()
+        self.inner = self._inner(self.height, self.width)
         while shuffle:
             random.shuffle(self.places)
             if not legalonly or self.islegal():
@@ -95,13 +94,15 @@ class Board:
         items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
         yield from rendertable(grouper(items, self.width))
 
-    def _inner(self):
+    @staticmethod
+    def _inner(height, width):
         """Return an iterable of (row, col) legal "inner" Fountain spaces.
         """
-        return {(x // 2, y // 2) for x, y in [(self.max[0], self.max[1]),
-                                              (self.max[0], self.width ),
-                                              (self.height, self.max[1]),
-                                              (self.height, self.width )]}
+        max = height - 1, width - 1
+        return {(x // 2, y // 2) for x, y in [(max[0], max[1]),
+                                              (max[0], width ),
+                                              (height, max[1]),
+                                              (height, width )]}
 
 def rendertable(table):
     """Render a 2D table as an iterable of lines.
