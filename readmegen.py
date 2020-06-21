@@ -9,7 +9,7 @@ istanbul_setup = __import__('istanbul-setup')
 
 path = 'README.md'
 
-examples = [[]]
+examples = [[], ['--mocha'], ['--letters'], ['--mocha', '--letters']]
 
 pattern = re.compile(r'Examples?\n-+\n.+$', re.DOTALL)
 

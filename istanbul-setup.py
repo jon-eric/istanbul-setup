@@ -120,9 +120,17 @@ def grouper(iterable, n):
     args = [iter(iterable)] * n
     return zip(*args)
 
+import argparse
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--mocha', help="Enable Mocha & Baksheesh", action='store_true')
+parser.add_argument('--letters', help="Enable Letters & Seals", action='store_true')
+
 def main(args):
+    # Parse args.
+    args = parser.parse_args(args)
+
     # Layout the board.
-    board = Board()
+    board = Board(args.mocha, args.letters)
 
     # Print board.
     for line in board.render():
