@@ -1,3 +1,5 @@
+"""Tests for istanbul-setup.py.
+"""
 import random
 istanbul_setup = __import__('istanbul-setup')
 
