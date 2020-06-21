@@ -124,9 +124,9 @@ def rendertable(table):
     for i, row in enumerate(table):
         if i == 0:
             yield ''
-            yield '|-' + '-+-'.join('-' * len(item) for item in row) + '-|'
+            yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
         yield '| ' + ' | '.join(row) + ' |'
-        yield '|-' + '-+-'.join('-' * len(item) for item in row) + '-|'
+        yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
