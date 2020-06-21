@@ -101,6 +101,16 @@ class Board:
             if not legalonly or self.islegal():
                 return self
 
+    @staticmethod
+    def _inner(height, width):
+        """Return a set of (row, col) legal "inner" Fountain spaces.
+        """
+        max = height - 1, width - 1
+        return {(x // 2, y // 2) for x, y in [(max[0], max[1]),
+                                              (max[0], width ),
+                                              (height, max[1]),
+                                              (height, width )]}
+
     def render(self):
         """Render the board.
         """
@@ -109,16 +119,6 @@ class Board:
         name_width = max(len(name) for name in names)
         items = [f'{id:{id_width}}) {name:^{name_width}}' for id, name in zip(self.places, names)]
         yield from rendertable(grouper(items, self.width))
-
-    @staticmethod
-    def _inner(height, width):
-        """Return an iterable of (row, col) legal "inner" Fountain spaces.
-        """
-        max = height - 1, width - 1
-        return {(x // 2, y // 2) for x, y in [(max[0], max[1]),
-                                              (max[0], width ),
-                                              (height, max[1]),
-                                              (height, width )]}
 
 def rendertable(table):
     """Render a 2D table as an iterable of lines.
