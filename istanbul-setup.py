@@ -1,8 +1,24 @@
 #!/usr/bin/env python3
 """Generate Istanbul board game setups.
 """
+import argparse
 import math
 import random
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--mocha', help="Enable Mocha & Baksheesh", action='store_true')
+parser.add_argument('--letters', help="Enable Letters & Seals", action='store_true')
+
+def main(args):
+    # Parse args.
+    args = parser.parse_args(args)
+
+    # Layout the board.
+    board = Board(args.mocha, args.letters)
+
+    # Print board.
+    for line in board.render():
+        print(line)
 
 class Board:
     base_places = dict(enumerate([
@@ -120,22 +136,6 @@ def grouper(iterable, n):
     # grouper('ABCDEFG', 3) --> ABC DEF"
     args = [iter(iterable)] * n
     return zip(*args)
-
-import argparse
-parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--mocha', help="Enable Mocha & Baksheesh", action='store_true')
-parser.add_argument('--letters', help="Enable Letters & Seals", action='store_true')
-
-def main(args):
-    # Parse args.
-    args = parser.parse_args(args)
-
-    # Layout the board.
-    board = Board(args.mocha, args.letters)
-
-    # Print board.
-    for line in board.render():
-        print(line)
 
 if __name__ == '__main__':
     import sys
