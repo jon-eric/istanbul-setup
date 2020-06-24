@@ -8,6 +8,7 @@ import random
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--mocha', help="Enable Mocha & Baksheesh", action='store_true')
 parser.add_argument('--letters', help="Enable Letters & Seals", action='store_true')
+parser.add_argument('--players', default=5, help="Number of players")
 
 def main(args):
     # Parse args.
@@ -19,6 +20,12 @@ def main(args):
     # Print board.
     for line in board.render():
         print(line)
+
+    # Print player order.
+    if args.players:
+        order = colors[:args.players]
+        random.shuffle(order)
+        print(f'\nPlayer order: {", ".join(order)}')
 
 class Board:
     base_places = dict(enumerate([
@@ -123,7 +130,6 @@ def rendertable(table):
     """
     for i, row in enumerate(table):
         if i == 0:
-            yield ''
             yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
         yield '| ' + ' | '.join(row) + ' |'
         yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
@@ -134,6 +140,8 @@ def grouper(iterable, n):
     # grouper('ABCDEFG', 3) --> ABC DEF"
     args = [iter(iterable)] * n
     return zip(*args)
+
+colors = ["Green", "Yellow", "Blue", "Red", "White"]
 
 if __name__ == '__main__':
     import sys
