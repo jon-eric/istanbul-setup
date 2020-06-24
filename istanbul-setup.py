@@ -37,7 +37,8 @@ def main(args):
     if args.players:
         order = colors[:args.players]
         random.shuffle(order)
-        print(f'\nPlayer order: {", ".join(order)}')
+        players = (f'{color} ({lira} lira)' for lira, color in enumerate(order, 2))
+        print(f'\nPlayer order: {", ".join(players)}')
 
 class Board:
     base_places = dict(enumerate([

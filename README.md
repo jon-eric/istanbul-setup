@@ -13,7 +13,7 @@ Examples
     |  5)   Post Office    |  9)    Tea House     |  4) Fruit Warehouse  | 13) Sultan's Palace  |
     +----------------------+----------------------+----------------------+----------------------+
 
-    Player order: Blue, White, Red, Yellow, Green
+    Player order: Blue (2 lira), White (3 lira), Red (4 lira), Yellow (5 lira), Green (6 lira)
 
     $ istanbul-setup.py --mocha
     Seed: 123
@@ -27,7 +27,7 @@ Examples
     | 19)      Tavern      | 14)   Small Mosque   |  3) Spice Warehouse  |  9)    Tea House     |  2) Fabric Warehouse |
     +----------------------+----------------------+----------------------+----------------------+----------------------+
 
-    Player order: Blue, Red, Green, White, Yellow
+    Player order: Blue (2 lira), Red (3 lira), Green (4 lira), White (5 lira), Yellow (6 lira)
 
     $ istanbul-setup.py --mocha --letters
     Seed: 123
@@ -43,4 +43,4 @@ Examples
     | 25)    Catacombs     | 10)   Large Market   |  2) Fabric Warehouse |  4) Fruit Warehouse  |  3) Spice Warehouse  |
     +----------------------+----------------------+----------------------+----------------------+----------------------+
 
-    Player order: Blue, Yellow, Green, Red, White
+    Player order: Blue (2 lira), Yellow (3 lira), Green (4 lira), Red (5 lira), White (6 lira)
