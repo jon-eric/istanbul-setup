@@ -4,15 +4,27 @@
 import argparse
 import math
 import random
+from datetime import datetime, timedelta
 
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--mocha', help="Enable Mocha & Baksheesh", action='store_true')
-parser.add_argument('--letters', help="Enable Letters & Seals", action='store_true')
-parser.add_argument('--players', default=5, help="Number of players")
+parser.add_argument('--mocha',   action='store_true', help="Enable Mocha & Baksheesh")
+parser.add_argument('--letters', action='store_true', help="Enable Letters & Seals")
+parser.add_argument('--players', default=5,           help="Number of players")
+parser.add_argument('--seed',    type=int,            help="Set random seed")
 
 def main(args):
     # Parse args.
     args = parser.parse_args(args)
+
+    # Determine seed.
+    if args.seed:
+        seed = args.seed
+        print(f'Seed: {seed}')
+    else:
+        now = datetime.now()
+        seed = timeseed(now)
+        print(f'Seed: {seed} ({now})')
+    random.seed(seed)
 
     # Layout the board.
     board = Board(args.mocha, args.letters)
@@ -133,6 +145,11 @@ def rendertable(table):
             yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
         yield '| ' + ' | '.join(row) + ' |'
         yield '+-' + '-+-'.join('-' * len(item) for item in row) + '-+'
+
+def timeseed(time):
+    """Return an integer seed value derived from time.
+    """
+    return (time - datetime(2020, 6, 23)) // timedelta(minutes=37)
 
 def grouper(iterable, n):
     """Collect data into fixed-length chunks or blocks.
