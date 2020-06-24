@@ -15,7 +15,7 @@ Examples
 
     Player order: Blue (2 lira), White (3 lira), Red (4 lira), Yellow (5 lira), Green (6 lira)
 
-    $ istanbul-setup.py --mocha
+    $ istanbul-setup.py --mocha --players=3
     Seed: 123
     +----------------------+----------------------+----------------------+----------------------+----------------------+
     |  8)   Black Market   | 18)    Guild Hall    |  4) Fruit Warehouse  |  5)   Post Office    | 15)   Great Mosque   |
@@ -27,7 +27,7 @@ Examples
     | 19)      Tavern      | 14)   Small Mosque   |  3) Spice Warehouse  |  9)    Tea House     |  2) Fabric Warehouse |
     +----------------------+----------------------+----------------------+----------------------+----------------------+
 
-    Player order: Blue (2 lira), Red (3 lira), Green (4 lira), White (5 lira), Yellow (6 lira)
+    Player order: Yellow (2 lira), Green (3 lira), Blue (4 lira)
 
     $ istanbul-setup.py --mocha --letters
     Seed: 123
