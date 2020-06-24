@@ -9,7 +9,7 @@ istanbul_setup = __import__('istanbul-setup')
 
 path = 'README.md'
 
-examples = [[], ['--mocha'], ['--letters'], ['--mocha', '--letters']]
+examples = [[], ['--mocha'], ['--mocha', '--letters']]
 
 pattern = re.compile(r'Examples?\n-+\n.+$', re.DOTALL)
 
@@ -19,20 +19,19 @@ def generate(path=path, examples=examples):
         contents = infile.read()
 
     # Regenerate examples.
-    random.seed(0)
-    examples = '\n'.join(exampleslines(examples))
+    examples = '\n'.join(exampleslines(examples, 123))
     contents = pattern.sub(examples, contents)
 
     # Write output.
     with open(path, 'w') as outfile:
         outfile.write(contents)
 
-def exampleslines(examples):
+def exampleslines(examples, seed):
     yield mdheader('Examples' if len(examples) > 1 else 'Example')
     for args in examples:
-        yield from mdcode(examplelines(args))
+        yield from mdcode(examplelines(args, seed))
 
-def examplelines(args):
+def examplelines(args, seed):
     # Example input.
     yield ''
     yield ' '.join(['$ istanbul-setup.py'] + args)
@@ -40,7 +39,7 @@ def examplelines(args):
     # Example output.
     with io.StringIO() as f:
         with redirect_stdout(f):
-            istanbul_setup.main(args)
+            istanbul_setup.main(args + [f'--seed={seed}'])
         f.seek(0)
         yield from f
 
