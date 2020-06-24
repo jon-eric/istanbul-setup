@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--mocha',   action='store_true', help="Enable Mocha & Baksheesh")
 parser.add_argument('--letters', action='store_true', help="Enable Letters & Seals")
-parser.add_argument('--players', default=5,           help="Number of players")
+parser.add_argument('--players', default=5, type=int, help="Number of players")
 parser.add_argument('--seed',    type=int,            help="Set random seed")
 
 def main(args):
